@@ -4,11 +4,11 @@
 namespace App\Controller;
 
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
 
     /**
@@ -17,7 +17,7 @@ class ArticleController
      */
     public function homepage()
     {
-        return new Response('Homepage');
+        return $this->render('home.html.twig');
     }
 
     /**
@@ -25,6 +25,6 @@ class ArticleController
      */
     public function show($slug)
     {
-        return new Response(sprintf('Article: %s', $slug));
+        return $this->render('article/show.html.twig');
     }
 }
