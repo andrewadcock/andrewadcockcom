@@ -54,3 +54,4 @@
 
 # IDE
 .idea
+.idea/*
