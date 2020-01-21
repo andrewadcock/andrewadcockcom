@@ -57,3 +57,6 @@ symfony/var/cache
 # IDE
 .idea
 .idea/*
+
+symfony/node_modules/
+symfony/public/build/
