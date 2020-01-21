@@ -21,6 +21,7 @@ class ComposerStaticInitc59310c10f7f54996f8a73c1fb471dc3
         ),
         'S' => 
         array (
+            'Symfony\\WebpackEncoreBundle\\' => 28,
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
@@ -48,6 +49,7 @@ class ComposerStaticInitc59310c10f7f54996f8a73c1fb471dc3
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\Cache\\' => 24,
+            'Symfony\\Component\\Asset\\' => 24,
             'Symfony\\Bundle\\WebProfilerBundle\\' => 33,
             'Symfony\\Bundle\\TwigBundle\\' => 26,
             'Symfony\\Bundle\\MonologBundle\\' => 29,
@@ -93,6 +95,10 @@ class ComposerStaticInitc59310c10f7f54996f8a73c1fb471dc3
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\WebpackEncoreBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/webpack-encore-bundle/src',
         ),
         'Symfony\\Polyfill\\Php73\\' => 
         array (
@@ -201,6 +207,10 @@ class ComposerStaticInitc59310c10f7f54996f8a73c1fb471dc3
         'Symfony\\Component\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
+        ),
+        'Symfony\\Component\\Asset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/asset',
         ),
         'Symfony\\Bundle\\WebProfilerBundle\\' => 
         array (
