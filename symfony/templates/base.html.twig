@@ -30,8 +30,16 @@
                 </ul>
             </nav>
         </header>
-        {% block body %}{% endblock %}
-
+        <div class="main">
+            <div class="main-content">
+            {% block body %}{% endblock %}
+            </div>
+            <div class="sidebar-right">
+                {% block sidebar %}
+                    {{ include('widgets/aboutme.html.twig') }}
+                {% endblock %}
+            </div>
+        </div>
         <footer>
             <nav class="nav-footer">
                 <ul>
