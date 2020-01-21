@@ -1,3 +1,11 @@
+@import 'helpers/reset';
+@import '~bootstrap';
+@import '~font-awesome';
+
+@import 'helpers/variables';
+@import 'components/header';
+@import 'components/footer';
+
 body {
     background-color: lightgray;
 }

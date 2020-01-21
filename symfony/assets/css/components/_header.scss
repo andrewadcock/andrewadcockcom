@@ -1,0 +1,44 @@
+.header {
+  background: #384e39;
+  color: $white;
+
+  a {
+    color: $white;
+
+    &:visited {
+      color: $white;
+    }
+
+    &:hover {
+      color: $brand-light;
+      text-decoration: none;
+    }
+  }
+}
+
+.logo {
+  background-image: url('../../images/logo.png');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  height: 120px;
+  text-indent: -9999px;
+  width: 148px;
+
+}
+
+.social,
+.nav-main {
+  ul {
+    margin: 0;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+.social {
+  span {
+    display: none;
+  }
+}

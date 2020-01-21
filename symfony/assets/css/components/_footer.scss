@@ -1,0 +1,17 @@
+.footer {
+  background: #384e39;
+  color: $white;
+
+  a {
+    color: $white;
+
+    &:visited {
+      color: $white;
+    }
+
+    &:hover {
+      color: $brand-light;
+      text-decoration: none;
+    }
+  }
+}
