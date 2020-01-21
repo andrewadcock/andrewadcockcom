@@ -32,6 +32,7 @@ symfony/var/cache
 !bin/console
 !bin/symfony_requirements
 /vendor/
+/symfony/vendor/
 
 # Assets and user uploads
 /web/bundles/
