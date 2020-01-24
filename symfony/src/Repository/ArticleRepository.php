@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -53,15 +54,22 @@ class ArticleRepository extends ServiceEntityRepository
      * @throws \Exception
      */
     public function findAllPublishedOrderedByNewest()
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.publishedAt IS NOT NULL')
-            ->andWhere('a.publishedAt < :val')
-            ->setParameter('val', new \DateTime())
+    {;
+
+        $qb = $this->createQueryBuilder('a');
+
+        return $this->isPublishedQueryBuilder($qb)
             ->orderBy('a.publishedAt', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult();
 
+    }
+
+    private function isPublishedQueryBuilder(QueryBuilder $qb)
+    {
+        return $qb->andWhere('a.publishedAt IS NOT NULL')
+        ->andWhere('a.publishedAt < :val')
+        ->setParameter('val', new \DateTime());
     }
 }
