@@ -12,15 +12,15 @@ class ArticleFixtures extends BaseFixture
     {
         $this->createMany(Article::class, 10, function(Article $article, $count) {
 
-            $article->setTitle("Test Article")
+            $article->setTitle($this->faker->text('40'))
                 ->setSlug("test-article-" . $count)
-                ->setContent("Here is some content that is new and tomorrow")
+                ->setContent($this->faker->text('2000'))
                 ->setAuthor('Andrew Adcock')
                 ->setImageFilename('code2.png');
 
             $date = new \DateTime();
 //        $article->setPublishedAt($date->modify('+1 minutes'));
-            $article->setPublishedAt($date);
+            $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
 
         });
 
