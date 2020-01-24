@@ -4,12 +4,7 @@
 
 {% block body %}
     <h1>{{ article.title }}</h1>
-    <div class="metadata">
-        Todo: Add Metadata
-        <div class="date">Published: </div>
-        <div class="categories">Categories: </div>
-
-    </div>
+   {% include '@widgets/metadata.html.twig' %}
 
     <div class="article-content">
         {{ article.content }}
