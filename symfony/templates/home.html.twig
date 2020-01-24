@@ -1,1 +1,19 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+    A brief introduction into who I am and why I built this site. Also, maybe add resume?
+
+    {% if articles|length > 0 %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h2><a href="/blog/{{ article.slug }}">{{ article.title }} . {{ article.id }}</a></h2>
+                    {% include 'widgets/metadata.html.twig' %}
+                    <div class="snippet">
+                        {{ article.content|truncate(2) }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

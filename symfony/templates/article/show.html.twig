@@ -1,1 +1,24 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}AndrewAdcock.com | {{ article.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <div class="metadata">
+        Todo: Add Metadata
+        <div class="date">Published: </div>
+        <div class="categories">Categories: </div>
+
+    </div>
+
+    <div class="article-content">
+        {{ article.content }}
+    </div>
+
+    <div class="share">
+        Todo: Add sharing options
+    </div>
+    <div class="comments">
+        Todo: Add comments
+    </div>
+{% endblock %}
