@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,11 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="app_homepage")
      * @return Response
+     * @throws \Exception
      */
-    public function homepage(EntityManagerInterface $em)
+    public function homepage(ArticleRepository $repository)
     {
-        $repository = $em->getRepository(Article::class);
-        $articles = $repository->findAll();
+        $articles = $repository->findAllPublishedOrderedByNewest();
 
         return $this->render('home.html.twig', [
             'articles' => $articles,
@@ -28,7 +29,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{slug}")
+     * @Route("/blog/{slug}", name="article_show")
      */
     public function show($slug, EntityManagerInterface $em)
     {

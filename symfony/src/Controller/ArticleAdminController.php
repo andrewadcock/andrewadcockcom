@@ -22,9 +22,10 @@ class ArticleAdminController extends AbstractController
 
         $article->setTitle("Test Article")
             ->setSlug("test-article-".rand(100, 999))
-            ->setContent("Here is some content");
+            ->setContent("Here is some content that is new and tomorrow");
 
-        $article->setPublishedAt(new \DateTime());
+        $date = new \DateTime();
+        $article->setPublishedAt($date->modify('+1 minutes'));
 
         $em->persist($article);
         $em->flush();
