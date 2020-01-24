@@ -22,7 +22,9 @@ class ArticleAdminController extends AbstractController
 
         $article->setTitle("Test Article")
             ->setSlug("test-article-".rand(100, 999))
-            ->setContent("Here is some content that is new and tomorrow");
+            ->setContent("Here is some content that is new and tomorrow")
+            ->setAuthor('Andrew Adcock')
+            ->setImageFilename('code2.png');
 
         $date = new \DateTime();
         $article->setPublishedAt($date->modify('+1 minutes'));

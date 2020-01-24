@@ -8,4 +8,24 @@
   .sidebar-right {
 
   }
+
+  .article {
+    margin: 1.2rem 0;
+    padding: 1.2rem;
+
+    &:nth-of-type(even){
+      background: #f1f1f1;
+    }
+
+    .featured-image {
+      float: left;
+      width: 20%;
+    }
+
+    .article-details {
+      float: right;
+      padding: 0 1.2rem;
+      width: 80%;
+    }
+  }
 }
