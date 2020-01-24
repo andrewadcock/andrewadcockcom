@@ -32,6 +32,7 @@ symfony/var/cache
 !bin/console
 !bin/symfony_requirements
 /vendor/
+/symfony/vendor/
 
 # Assets and user uploads
 /web/bundles/
@@ -56,3 +57,6 @@ symfony/var/cache
 # IDE
 .idea
 .idea/*
+
+symfony/node_modules/
+symfony/public/build/

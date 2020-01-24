@@ -1,0 +1,36 @@
+.footer {
+  background: #384e39;
+  color: $white;
+  font-size: 0.85rem;
+  padding: ($grid-gutter-width / 2) 0;
+  text-align: center;
+
+  a {
+    color: $white;
+    font-size: 1rem;
+
+    &:visited {
+      color: $white;
+    }
+
+    &:hover {
+      color: $brand-light;
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    margin-bottom: 0.2rem;
+
+    li {
+      border-left: 1px solid $white;
+      display: inline-block;
+      line-height: 1.2rem;
+      padding: 0 0.4rem;
+
+      &:first-of-type {
+        border-left: 0;
+      }
+    }
+  }
+}
