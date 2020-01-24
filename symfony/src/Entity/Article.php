@@ -9,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+
+    // TODO: Update when stof doctrine extension bundle supports symfony 5.0+
+    // https://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/installation.html#installation-using-symfony-flex
+//    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

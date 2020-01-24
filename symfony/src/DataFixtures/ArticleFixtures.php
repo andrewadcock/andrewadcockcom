@@ -21,6 +21,7 @@ class ArticleFixtures extends BaseFixture
             $date = new \DateTime();
 //        $article->setPublishedAt($date->modify('+1 minutes'));
             $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
+            
 
         });
 
