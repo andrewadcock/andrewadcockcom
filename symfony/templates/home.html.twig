@@ -10,7 +10,7 @@
                     <h2><a href="/blog/{{ article.slug }}">{{ article.title }} . {{ article.id }}</a></h2>
                     {% include 'widgets/metadata.html.twig' %}
                     <div class="snippet">
-                        {{ article.content|truncate(2) }}
+                        {{ article.content|truncate(200) }}
                     </div>
                 </li>
             {% endfor %}
