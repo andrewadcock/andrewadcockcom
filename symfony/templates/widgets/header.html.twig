@@ -2,7 +2,7 @@
     <div class="container">
         <div class="logo-title">
             <div class="logo"><a href="{{ path('app_homepage') }}">AndrewAdcock.com</a></div>
-            <div class="title"><a href="{{ path('app_homepage') }}">AndrewAdcock.com</a></div>
+            <div class="title"><a href="{{ path('app_homepage') }}">Andrew Adcock</a></div>
         </div>
         <div class="social">
             <ul>
@@ -13,13 +13,17 @@
             </ul>
         </div>
 
-        <div class="menu-btn">&nbsp;</div>
-        <nav class="nav-main">
-            <ul>
-                <li><a href="{{ path('app_homepage') }}">Home</a></li>
-                <li><a href="{{ path('app_about') }}">About</a></li>
-                <li><a href="{{ path('app_contact') }}">Contact</a></li>
-            </ul>
+        <nav class="nav-main navbar-expand-md navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul>
+                    <li{% if app.request.get('_route') == 'app_homepage' %} class="active"{% endif %}><a href="{{ path('app_homepage') }}">Home</a></li>
+                    <li{% if app.request.get('_route') == 'app_about' %} class="active"{% endif %}><a href="{{ path('app_about') }}">About</a></li>
+                    <li{% if app.request.get('_route') == 'app_contact' %} class="active"{% endif %}><a href="{{ path('app_contact') }}">Contact</a></li>
+                </ul>
+            </div>
         </nav>
     </div><!-- container -->
 </header>

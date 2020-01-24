@@ -13,10 +13,10 @@
 <div class="main">
     <div class="container">
         <div class="row">
-            <div class="main-content col col-md-9">
+            <div class="main-content col col-12 col-md-9">
                 {% block body %}{% endblock %}
             </div>
-            <div class="sidebar-right col col-md-3">
+            <div class="sidebar-right col col-12 col-md-3">
                 {% block sidebar %}
                     {{ include('widgets/aboutme.html.twig') }}
                 {% endblock %}

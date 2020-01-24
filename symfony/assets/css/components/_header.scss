@@ -1,6 +1,7 @@
 .header {
   background: #384e39;
   color: $white;
+  text-align: center;
 
   a {
     color: $white;
@@ -20,19 +21,28 @@
   background-image: url('../../images/logo.png');
   background-repeat: no-repeat;
   background-size: 100% auto;
-  height: 120px;
+  height: 68px;
+  margin: 0 auto;
   text-indent: -9999px;
-  width: 148px;
+  width: 80px;
+}
 
+.title {
+  font-size: 1.8rem;
+  font-weight: $font-weight-bold;
 }
 
 .social,
 .nav-main {
   ul {
-    margin: 0;
+    margin: 0 auto;
 
     li {
       display: inline-block;
+
+      &.active {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -40,5 +50,19 @@
 .social {
   span {
     display: none;
+  }
+}
+
+.nav-main {
+  ul {
+    margin: 0.4rem auto;
+    li {
+      border-left: 1px solid $white;
+      padding: 0 0.4em;
+
+      &:first-of-type {
+        border-left: none;
+      }
+    }
   }
 }
