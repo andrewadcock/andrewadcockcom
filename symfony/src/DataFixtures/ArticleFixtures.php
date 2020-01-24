@@ -6,15 +6,14 @@ use App\Entity\Article;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class ArticleFixtures extends Fixture
+class ArticleFixtures extends BaseFixture
 {
-    public function load(ObjectManager $manager)
+    public function loadData(ObjectManager $manager)
     {
-        for($i = 0; $i < 10; $i++) {
-            $article = new Article();
+        $this->createMany(Article::class, 10, function(Article $article, $count) {
 
             $article->setTitle("Test Article")
-                ->setSlug("test-article-" . rand(100, 999))
+                ->setSlug("test-article-" . $count)
                 ->setContent("Here is some content that is new and tomorrow")
                 ->setAuthor('Andrew Adcock')
                 ->setImageFilename('code2.png');
@@ -23,8 +22,8 @@ class ArticleFixtures extends Fixture
 //        $article->setPublishedAt($date->modify('+1 minutes'));
             $article->setPublishedAt($date);
 
-            $manager->persist($article);
-        }
+        });
+
         $manager->flush();
     }
 }
