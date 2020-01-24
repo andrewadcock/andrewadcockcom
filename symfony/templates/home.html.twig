@@ -1,1 +1,28 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+    A brief introduction into who I am and why I built this site. Also, maybe add resume?
+
+    {% if articles|length > 0 %}
+        <ul>
+            {% for article in articles %}
+                <li class="article clearfix">
+                    <div class="featured-image">
+                        {% if article.imageFilename %}
+                            <img src="{{ asset(article.imagePath) }}">
+                        {% else %}
+                            <img src="{{ asset('images/placeholder-image.png') }}">
+                        {% endif %}
+                    </div>
+                    <div class="article-details">
+                        <h2><a href="{{ path('article_show', { slug: article.slug }) }}">{{ article.title }}: {{ article.id }}</a></h2>
+                        {% include '@widgets/metadata.html.twig' %}
+                        <div class="snippet">
+                            {{ article.content|truncate(200) }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

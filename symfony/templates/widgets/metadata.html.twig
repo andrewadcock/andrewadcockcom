@@ -1,0 +1,12 @@
+<div class="metadata">
+    <div class="published">
+        {% if app.request.get('_route') == 'app_homepage' %}
+            {{ article.publishedAt|ago }}
+        {% else %}
+            {{ article.publishedAt|date('m/d/Y h:ia') }}
+        {% endif %}
+    </div>
+    <div class="categories">
+        Categories: TODO: Add Categories
+    </div>
+</div>
