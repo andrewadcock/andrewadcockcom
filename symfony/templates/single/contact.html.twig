@@ -3,4 +3,8 @@
 {% block body %}
     <h3>Have a question, comment, or recipe? Drop me a line.</h3>
     <p>Fields marked with an * are required</p>
+
+    {{form_start(contactForm)}}
+    {{form_widget(contactForm)}}
+    {{form_end(contactForm)}}
 {% endblock %}
