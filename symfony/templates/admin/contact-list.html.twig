@@ -10,7 +10,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Subject</th>
-            <th>Message</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.subject }}</td>
-                <td>{{ contact.message|truncate(200) }}</td>
+                <td><a href="{{ path('admin_contact_single', {id: contact.id}) }}">View</a></td>
             </tr>
         {% endfor %}
         </tbody>

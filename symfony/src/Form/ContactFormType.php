@@ -27,7 +27,7 @@ class ContactFormType extends AbstractType
                     ]
             ])
             ->add('email', EmailType::class, [
-                'label'=> 'Email',
+                'label'=> 'Email *',
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -40,7 +40,7 @@ class ContactFormType extends AbstractType
                 ]
             ])
             ->add('message', TextareaType::class, [
-                'label'=> 'Message',
+                'label'=> 'Message *',
                 'attr' => [
                     'class' => 'form-control'
                 ]

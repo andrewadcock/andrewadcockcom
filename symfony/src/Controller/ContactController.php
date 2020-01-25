@@ -16,7 +16,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function show(EntityManagerInterface $em, Request $request)
+    public function page(EntityManagerInterface $em, Request $request)
     {
 
         $form = $this->createForm(ContactFormType::class);
@@ -48,10 +48,23 @@ class ContactController extends AbstractController
     public function list(ContactRepository $contactRepository) {
 
         // Get all contacts
-        $contacts = $contactRepository->findAll();
+        $contacts = $contactRepository->findBy([], ['id' => 'DESC']);
 
         return $this->render('admin/contact-list.html.twig', [
             'contacts' => $contacts,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/contact/{id}", name="admin_contact_single")
+     */
+    public function showSingle(ContactRepository $contactRepository, int $id)
+    {
+
+        $contact = $contactRepository->findOneBy(['id' => $id]);
+
+        return $this->render('admin/contact-single.html.twig', [
+            'contact' => $contact,
         ]);
     }
 }
