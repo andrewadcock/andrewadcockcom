@@ -4,15 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactFormType;
-use App\Repository\ArticleRepository;
 use App\Repository\ContactRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,8 +24,11 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $data = $form->getData();
+
             $contact = new Contact();
+
             $contact->setName($data['name']);
             $contact->setEmail($data['email']);
             $contact->setSubject($data['subject']);
@@ -40,8 +37,10 @@ class ContactController extends AbstractController
             $em->persist($contact);
             $em->flush();
 
+            $this->addFlash('success', 'Thank you for contacting me! I\'ll be in touch shortly!');
+
             // Todo: Create Thank you page or something
-            return $this->redirectToRoute('app_homepage');
+            return $this->redirectToRoute('app_contact');
         }
 
         return $this->render('single/contact.html.twig', [
@@ -50,7 +49,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/admin/contact", name="contact_list")
+     * @Route("/admin/contact", name="admin_contact_list")
      */
     public function list(ContactRepository $contactRepository) {
 
