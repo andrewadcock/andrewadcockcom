@@ -3,6 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Form\ContactFormType;
+use App\Repository\ArticleRepository;
+use App\Repository\ContactRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,22 +22,43 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function show(Request $request)
+    public function show(EntityManagerInterface $em, Request $request)
     {
-        $contact = new Contact();
 
-        $form = $this->createFormBuilder($contact)
-            ->add('name', TextType::class, ['label'=> 'Name', 'required' => false, 'attr' => ['class' => 'form-control']])
-            ->add('email', EmailType::class, ['label'=> 'Email', 'attr' => ['class' => 'form-control']])
-            ->add('subject', TextType::class, ['label'=> 'Subject', 'required' => false, 'attr' => ['class' => 'form-control']])
-            ->add('message', TextareaType::class, ['label'=> 'Message','attr' => ['class' => 'form-control']])
-            ->add('Save', SubmitType::class, ['label'=> 'Submit', 'attr' => ['class' => 'btn btn-primary']])
-            ->getForm();
+        $form = $this->createForm(ContactFormType::class);
 
-        //$form->handleRequest($request);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $contact = new Contact();
+            $contact->setName($data['name']);
+            $contact->setEmail($data['email']);
+            $contact->setSubject($data['subject']);
+            $contact->setMessage($data['message']);
+
+            $em->persist($contact);
+            $em->flush();
+
+            // Todo: Create Thank you page or something
+            return $this->redirectToRoute('app_homepage');
+        }
 
         return $this->render('single/contact.html.twig', [
             'contactForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/contact", name="contact_list")
+     */
+    public function list(ContactRepository $contactRepository) {
+
+        // Get all contacts
+        $contacts = $contactRepository->findAll();
+
+        return $this->render('admin/contact-list.html.twig', [
+            'contacts' => $contacts,
         ]);
     }
 }

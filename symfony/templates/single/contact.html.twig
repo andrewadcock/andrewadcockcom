@@ -4,7 +4,22 @@
     <h3>Have a question, comment, or recipe? Drop me a line.</h3>
     <p>Fields marked with an * are required</p>
 
-    {{form_start(contactForm)}}
-    {{form_widget(contactForm)}}
-    {{form_end(contactForm)}}
+
+    {% set flashbag_notices = app.session.flashbag.get('notice') %}
+    {% if flashbag_notices is not empty %}
+        <div class="alert alert-success">
+            <div class="flash-notice">
+                {% for notice in flashbag_notices %}
+                    {{notice}}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="contact-form">
+        {{form_start(contactForm)}}
+            {{form_widget(contactForm)}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {{form_end(contactForm)}}
+    </div>
 {% endblock %}
