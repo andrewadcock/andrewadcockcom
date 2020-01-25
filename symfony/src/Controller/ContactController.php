@@ -25,14 +25,8 @@ class ContactController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
 
-            $data = $form->getData();
-
-            $contact = new Contact();
-
-            $contact->setName($data['name']);
-            $contact->setEmail($data['email']);
-            $contact->setSubject($data['subject']);
-            $contact->setMessage($data['message']);
+            /** @var Contact $contact */
+            $contact = $form->getData();
 
             $em->persist($contact);
             $em->flush();
