@@ -10,8 +10,8 @@ class ArticleFixtures extends BaseFixture
 {
     public function loadData(ObjectManager $manager)
     {
-        $this->createMany(Article::class, 10, function(Article $article, $count) {
-
+        $this->createMany(10, 'main_articles', function($count) use ($manager) {
+            $article = new Article();
             $article->setTitle($this->faker->text('40'))
                 ->setSlug("test-article-" . $count)
                 ->setContent($this->faker->text('2000'))
@@ -22,7 +22,7 @@ class ArticleFixtures extends BaseFixture
 //        $article->setPublishedAt($date->modify('+1 minutes'));
             $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             
-
+            return $article;
         });
 
         $manager->flush();
