@@ -35,7 +35,7 @@ class Contact
     private $subject;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4095)
      * @Assert\NotBlank(message="Don't forget to tell me something!")
      */
     private $message;
