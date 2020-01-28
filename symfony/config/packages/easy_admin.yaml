@@ -1,0 +1,8 @@
+easy_admin:
+    site_name: AndrewAdcock.com
+    design:
+        brand_color: '#384e39'
+    entities:
+        # List the entity class name you want to manage
+        - App\Entity\Article
+        - App\Entity\User
