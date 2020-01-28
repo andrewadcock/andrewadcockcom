@@ -25,7 +25,8 @@ easy_admin:
                     - {type: "group", icon: "pencil", label: "Basic Information"}
                     - title
                     - slug
-                    - {property: 'content', type: 'text_editor'}
+                    - content
+#                    - {property: 'content', type: 'text_editor'}
                     - {type: "group", icon: "th-list", label: "Metadata"}
                     - publishedAt
                     - Author
