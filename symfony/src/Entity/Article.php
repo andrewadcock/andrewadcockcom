@@ -50,6 +50,11 @@ class Article
      */
     private $imageFilename;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $published;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,5 +135,17 @@ class Article
     public function getImagePath()
     {
         return 'images/'.$this->getImageFilename();
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
     }
 }

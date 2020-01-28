@@ -1,0 +1,17 @@
+easy_admin:
+    site_name: AndrewAdcock.com
+    design:
+        brand_color: '#384e39'
+    entities:
+        Article:
+            class: App\Entity\Article
+            form:
+                fields:
+                    - title
+                    - slug
+                    - content
+                    - publishedAt
+                    - Author
+                    - ImageFilename
+        User:
+            class: App\Entity\User

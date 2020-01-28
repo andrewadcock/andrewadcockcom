@@ -16,7 +16,8 @@ class ArticleFixtures extends BaseFixture
                 ->setSlug("test-article-" . $count)
                 ->setContent($this->faker->text('2000'))
                 ->setAuthor('Andrew Adcock')
-                ->setImageFilename('code2.png');
+                ->setImageFilename('code2.png')
+                ->setPublished($this->faker->boolean(75));
 
             $date = new \DateTime();
 //        $article->setPublishedAt($date->modify('+1 minutes'));
