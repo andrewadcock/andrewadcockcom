@@ -3,10 +3,10 @@ easy_admin:
     design:
         menu:
             - {label: "Entities"}
-            - label: "Posts"
+            - label: "Articles"
               children:
-                - {entity: Article, label: "List Posts", icon: "th-list"}
-                - {entity: Article, label: "New Post", icon: "plus", params: {action: 'new'}}
+                - {entity: Article, label: "List Articles", icon: "th-list"}
+                - {entity: Article, label: "New Article", icon: "plus", params: {action: 'new'}}
             - label: "Category"
               children:
                   - {entity: Category, label: "List Categories", icon: "th-list"}
@@ -19,6 +19,7 @@ easy_admin:
     entities:
         Article:
             class: App\Entity\Article
+            label: Article
             form:
                 fields:
                     - title
