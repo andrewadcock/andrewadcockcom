@@ -7,6 +7,9 @@
         {% endif %}
     </div>
     <div class="categories">
-        Categories: TODO: Add Categories
+        Categories:
+        {% for category in article.categories %}
+            <a href="{{ category.slug }}">{{ category.name }}</a>
+        {% endfor %}
     </div>
 </div>
