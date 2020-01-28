@@ -29,6 +29,7 @@ easy_admin:
 #                    - {property: 'content', type: 'text_editor'}
                     - {type: "group", icon: "th-list", label: "Metadata"}
                     - publishedAt
+                    - published
                     - Author
                     - ImageFilename
                     - categories
