@@ -13,5 +13,8 @@ easy_admin:
                     - publishedAt
                     - Author
                     - ImageFilename
+                    - categories
+        Categories:
+            class: App\Entity\Category
         User:
             class: App\Entity\User
