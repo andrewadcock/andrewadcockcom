@@ -1,7 +1,21 @@
 easy_admin:
     site_name: AndrewAdcock.com
     design:
-        brand_color: '#384e39'
+        menu:
+            - {label: "Entities"}
+            - label: "Posts"
+              children:
+                - {entity: Article, label: "List Posts", icon: "th-list"}
+                - {entity: Article, label: "New Post", icon: "plus", params: {action: 'new'}}
+            - label: "Category"
+              children:
+                  - {entity: Category, label: "List Categories", icon: "th-list"}
+                  - {entity: Category, label: "New Category", icon: "plus", params: {action: 'new'}}
+            - {label: "Settings"}
+            - label: "Users"
+              children:
+                  - {entity: User, label: "List Users", icon: "th-list"}
+                  - {entity: User, label: "New User", icon: "plus", params: {action: 'new'}}
     entities:
         Article:
             class: App\Entity\Article
@@ -14,7 +28,7 @@ easy_admin:
                     - Author
                     - ImageFilename
                     - categories
-        Categories:
+        Category:
             class: App\Entity\Category
         User:
             class: App\Entity\User
