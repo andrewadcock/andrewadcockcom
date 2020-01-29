@@ -60,3 +60,5 @@ symfony/var/cache
 
 symfony/node_modules/
 symfony/public/build/
+
+.xcf
