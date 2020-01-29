@@ -2,8 +2,17 @@
 
 {% block title %} {{ parent() }} | Some Thoughts on Development {% endblock %}
 
+{% block sidebar %}
+    {{ include('widgets/archives.html.twig') }}
+{% endblock %}
+
 {% block body %}
-    A brief introduction into who I am and why I built this site. Also, maybe add resume?
+    <div class="intro">
+        <h2>Exploring Development with Friends!</h2>
+        Howdy! My name is Andrew and I'm hear to discuss all things web development related. My primary focus is on
+        Symfony, Drupal, and WordPress but I stray into different topics. Join me!
+    </div>
+
 
     {% if articles|length > 0 %}
         <ul>

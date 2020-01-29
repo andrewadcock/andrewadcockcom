@@ -2,6 +2,10 @@
 
 {% block title %} {{ parent() }} | Contact Me {% endblock %}
 
+{% block sidebar %}
+    {{ include('widgets/aboutme.html.twig') }}
+{% endblock %}
+
 {% block body %}
     <h3>Have a question, comment, or recipe? Drop me a line.</h3>
     <p>Fields marked with an * are required</p>

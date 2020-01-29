@@ -1,4 +1,6 @@
 .main {
+  border-bottom: 2px solid $brand-dark;
+  border-top: 2px solid $brand-dark;
   padding: $grid-gutter-width 0;
 
   .main-content {
