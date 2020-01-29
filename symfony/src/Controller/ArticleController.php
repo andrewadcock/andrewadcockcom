@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Michelf\MarkdownInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,7 +32,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/blog/{slug}", name="article_show")
      */
-    public function show($slug, EntityManagerInterface $em)
+    public function show($slug, EntityManagerInterface $em, MarkdownInterface $markdown)
     {
         // Get Repo
         $repository = $em->getRepository(Article::class);
@@ -39,6 +40,7 @@ class ArticleController extends AbstractController
         // Get article
         /** @var Article $article */
         $article = $repository->findOneBy(['slug' => $slug]);
+        $articleContent = $markdown->transform($article->getContent());
 
         if(!$article) {
             throw $this->createNotFoundException(sprintf('Oops! No article, %s,found', $slug));
@@ -46,6 +48,7 @@ class ArticleController extends AbstractController
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'mak' => $articleContent,
         ]);
     }
 }
