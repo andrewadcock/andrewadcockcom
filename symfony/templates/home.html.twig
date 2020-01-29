@@ -2,6 +2,10 @@
 
 {% block title %} {{ parent() }} | Some Thoughts on Development {% endblock %}
 
+{% block sidebar %}
+    {{ include('widgets/archives.html.twig') }}
+{% endblock %}
+
 {% block body %}
     <div class="intro">
         <h2>Exploring Development with Friends!</h2>

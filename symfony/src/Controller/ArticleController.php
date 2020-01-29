@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Michelf\MarkdownInterface;
@@ -20,12 +21,14 @@ class ArticleController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function homepage(ArticleRepository $repository)
+    public function homepage(ArticleRepository $repository, EntityManagerInterface $em)
     {
         $articles = $repository->findAllPublishedOrderedByNewest();
 
         return $this->render('home.html.twig', [
             'articles' => $articles,
+            'archives' => $this->archivesByDateDesc($em),
+            'categories' => $this->categoriesAlpha($em),
         ]);
     }
 
@@ -42,6 +45,8 @@ class ArticleController extends AbstractController
         $article = $repository->findOneBy(['slug' => $slug]);
         $articleContent = $markdown->transform($article->getContent());
 
+
+
         if(!$article) {
             throw $this->createNotFoundException(sprintf('Oops! No article, %s,found', $slug));
         }
@@ -49,6 +54,22 @@ class ArticleController extends AbstractController
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'mak' => $articleContent,
+            'archives' => $this->archivesByDateDesc($em),
+            'categories' => $this->categoriesAlpha($em),
         ]);
+    }
+
+
+    public function archivesByDateDesc(EntityManagerInterface $em)
+    {
+        $repository = $em->getRepository(Article::class);
+        /** @var Artcile $articles */
+        return $repository->findAllPublishedOrderedByNewest();
+    }
+
+    public function categoriesAlpha(EntityManagerInterface $em) {
+        $repository = $em->getRepository(Category::class);
+        return $repository->findAllByNameOrderedAsc();
+
     }
 }
