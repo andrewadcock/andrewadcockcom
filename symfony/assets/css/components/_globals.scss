@@ -1,6 +1,7 @@
 body {
   background-color: $body-bg;
-  font-family: 'Roboto', sans-serif;
+  //font-family: 'Roboto', sans-serif;
+  font-family: 'Martel Sans', sans-serif;
   font-weight: 300;
 }
 
@@ -19,5 +20,21 @@ img {
     content: "";
     clear: both;
     display: table;
+  }
+}
+
+a {
+  color: $brand-primary;
+
+  &:visited {
+    color: $brand-primary;
+  }
+
+  &:hover {
+    color: $brand-dark;
+  }
+
+  &:active {
+
   }
 }

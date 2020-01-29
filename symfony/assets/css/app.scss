@@ -2,11 +2,11 @@
 @import '~bootstrap';
 @import '~font-awesome';
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap'); // font-family: 'Bangers', cursive;
+@import url('https://fonts.googleapis.com/css?family=Bangers|Martel+Sans&display=swap'); // font-family: 'Bangers', cursive;  // font-family: 'Martel Sans', sans-serif;
 
 @import 'helpers/variables';
 @import 'components/globals';
 @import 'components/layout';
 @import 'components/header';
 @import 'components/footer';
+@import 'components/content';
