@@ -17,9 +17,11 @@ class AboutController extends AbstractController
      */
     public function show(EntityManagerInterface $em)
     {
-        $articles = new ArticleController();
-        $categories = $articles->categoriesAlpha($em);
+        $cats = new CategoryController();
+        $categories = $cats->categoriesAlpha($em);
 
+
+        $articles = new ArticleController();
         $archives = $articles->archivesByDateDesc($em);
 
         return $this->render('single/about.html.twig', [

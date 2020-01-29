@@ -25,10 +25,13 @@ class ArticleController extends AbstractController
     {
         $articles = $repository->findAllPublishedOrderedByNewest();
 
+        $cats = new CategoryController();
+        $categories = $cats->categoriesAlpha($em);
+
         return $this->render('home.html.twig', [
             'articles' => $articles,
             'archives' => $this->archivesByDateDesc($em),
-            'categories' => $this->categoriesAlpha($em),
+            'categories' => $categories,
         ]);
     }
 
@@ -51,11 +54,14 @@ class ArticleController extends AbstractController
             throw $this->createNotFoundException(sprintf('Oops! No article, %s,found', $slug));
         }
 
+        $cats = new CategoryController();
+        $categories = $cats->categoriesAlpha($em);
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'mak' => $articleContent,
+            'articleContent' => $articleContent,
             'archives' => $this->archivesByDateDesc($em),
-            'categories' => $this->categoriesAlpha($em),
+            'categories' => $categories,
         ]);
     }
 
@@ -65,11 +71,5 @@ class ArticleController extends AbstractController
         $repository = $em->getRepository(Article::class);
         /** @var Artcile $articles */
         return $repository->findAllPublishedOrderedByNewest();
-    }
-
-    public function categoriesAlpha(EntityManagerInterface $em) {
-        $repository = $em->getRepository(Category::class);
-        return $repository->findAllByNameOrderedAsc();
-
     }
 }
