@@ -1,5 +1,6 @@
 .footer {
-  background: #384e39;
+  background: $brand-dark;
+  border-top: 4px solid $body-bg;
   color: $white;
   font-size: 0.85rem;
   padding: ($grid-gutter-width / 2) 0;

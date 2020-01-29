@@ -1,5 +1,7 @@
 .header {
-  background: #384e39;
+  background: #384e39 url('../../images/header.png') center center no-repeat;
+  background-size: cover;
+  border-bottom: 4px solid $body-bg;
   color: $white;
   text-align: center;
 
@@ -28,8 +30,9 @@
 }
 
 .title {
+  font-family: 'Bangers', cursive;
   font-size: 1.8rem;
-  font-weight: $font-weight-bold;
+  letter-spacing: 1px;
 }
 
 .social,
