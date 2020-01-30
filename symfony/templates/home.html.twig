@@ -29,7 +29,7 @@
                         <h2><a href="{{ path('article_show', { slug: article.slug }) }}">{{ article.title }}</a></h2>
                         {% include '@widgets/metadata.html.twig' %}
                         <div class="snippet">
-                            {{ article.content|truncate(200) }}
+                            {{ article.content|truncate(200)|markdown }}
                         </div>
                     </div>
                 </li>

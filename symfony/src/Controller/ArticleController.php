@@ -8,6 +8,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Michelf\MarkdownInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class ArticleController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function homepage(ArticleRepository $repository, EntityManagerInterface $em)
+    public function homepage(ArticleRepository $repository, EntityManagerInterface $em, MarkdownParserInterface $markdownParser)
     {
         $articles = $repository->findAllPublishedOrderedByNewest();
 
