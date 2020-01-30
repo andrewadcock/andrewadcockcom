@@ -9,7 +9,7 @@
     <div class="categories">
         Categories:
         {% for category in article.categories %}
-            <a href="{{ category.slug }}">{{ category.name }}</a>
+            <a href="{{ category.slug }}">{{ category.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
     </div>
 </div>
