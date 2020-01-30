@@ -44,11 +44,16 @@ class ArticleRepository extends ServiceEntityRepository
         ->setParameter('val', new \DateTime());
     }
 
-    public function findByCategory(string $categoryId)
+    public function findByCategory(string $category)
     {
-        // TODO: Get all articles in category
         $qb = $this->createQueryBuilder('a');
-        return $qb->andWhere('a.categories = :val')
-            ->setParameter('val', $categoryId);
+
+        return $this->isPublishedQueryBuilder($qb)
+            ->orderBy('a.publishedAt', 'DESC')
+            ->leftJoin('a.categories', 'c')
+            ->andWhere('c.name = :cat')
+            ->setParameter('cat', $category)
+            ->getQuery()
+            ->getResult();
     }
 }
