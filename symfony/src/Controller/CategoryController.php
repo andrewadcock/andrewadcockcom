@@ -31,8 +31,10 @@ class CategoryController extends AbstractController
             throw $this->createNotFoundException(sprintf('Oops! No articles found in category: %s', $slug));
         }
 
+        // Get articles
         $articleRepo = $em->getRepository(Article::class);
-        $articles = $articleRepo->findByCategory($category->getId());
+        $articles = $articleRepo->findByCategory($category);
+
 
         $archiveController = new ArticleController();
         $archives = $archiveController->archivesByDateDesc($em);
