@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Contact Form Submission{% endblock %}
+
+{% block body %}
+    <div class="contact-single">
+        <h1>Contact submission</h1>
+        <div class="name">
+            <div class="label">Name</div>
+            <div class="content">{{ contact.name }}</div>
+        </div>
+
+        <div class="email">
+            <div class="label">Email</div>
+            <div class="content">{{ contact.email }}</div>
+        </div>
+
+        <div class="subject">
+            <div class="label">Subject</div>
+            <div class="content">{{ contact.subject }}</div>
+        </div>
+
+        <div class="message">
+            <div class="label">Message</div>
+            <div class="content">{{ contact.message }}</div>
+        </div>
+
+    </div>
+{% endblock %}

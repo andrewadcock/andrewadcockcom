@@ -1,0 +1,44 @@
+body {
+  background-color: $body-bg;
+  //font-family: 'Roboto', sans-serif;
+  font-family: 'Martel Sans', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $brand-dark;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+em {
+  font-style: italic;
+}
+
+.clearfix {
+
+  &:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+a {
+  color: $brand-primary;
+
+  &:visited {
+    color: $brand-primary;
+  }
+
+  &:hover {
+    color: $brand-dark;
+  }
+
+  &:active {
+
+  }
+}

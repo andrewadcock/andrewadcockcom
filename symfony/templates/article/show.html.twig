@@ -1,1 +1,19 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {{ article.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+   {% include '@widgets/metadata.html.twig' %}
+
+    <div class="article-content">
+        {{ articleContent|raw }}
+    </div>
+
+    <div class="share">
+        Todo: Add sharing options
+    </div>
+    <div class="comments">
+        Todo: Add comments
+    </div>
+{% endblock %}

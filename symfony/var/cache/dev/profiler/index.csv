@@ -1,5 +1,0 @@
-e2834b,192.168.80.1,GET,http://symfony.localhost/,1578931302,,200
-f90ce1,192.168.80.1,GET,http://symfony.localhost/favicon.ico,1578931303,59deac,404
-59deac,192.168.80.1,GET,http://symfony.localhost/favicon.ico,1578931303,,404
-ab40c1,192.168.80.1,GET,http://symfony.localhost/blog/stuff,1578931531,,200
-b5c3e8,192.168.80.1,GET,http://symfony.localhost/blog/stuff,1578931571,,200

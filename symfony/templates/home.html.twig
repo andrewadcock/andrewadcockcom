@@ -1,1 +1,39 @@
 {% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} | Some Thoughts on Development {% endblock %}
+
+{% block sidebar %}
+    {{ include('widgets/archives.html.twig') }}
+{% endblock %}
+
+{% block body %}
+    <div class="intro">
+        <h2>Exploring Development with Friends!</h2>
+        Howdy! My name is Andrew and I'm hear to discuss all things web development related. My primary focus is on
+        Symfony, Drupal, and WordPress but I stray into different topics. Join me!
+    </div>
+
+
+    {% if articles|length > 0 %}
+        <ul>
+            {% for article in articles %}
+                <li class="article clearfix">
+                    <div class="featured-image">
+                        {% if article.imageFilename %}
+                            <img src="{{ asset(article.imagePath) }}">
+                        {% else %}
+                            <img src="{{ asset('images/placeholder-image.png') }}">
+                        {% endif %}
+                    </div>
+                    <div class="article-details">
+                        <h2><a href="{{ path('article_show', { slug: article.slug }) }}">{{ article.title }}</a></h2>
+                        {% include '@widgets/metadata.html.twig' %}
+                        <div class="snippet">
+                            {{ article.content|truncate(200)|markdown }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

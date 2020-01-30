@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}AndrewAdcock.com - Some thoughts on development{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-33467755-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-33467755-1');
+    </script>
+
+    <meta charset="UTF-8">
+    <title>{% block title %}AndrewAdcock.com{% endblock %}</title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{{ include('widgets/header.html.twig') }}
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col col-12 col-md-9">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {% block body %}{% endblock %}
+            </div>
+            <div class="sidebar-right col col-12 col-md-3">
+                {% block sidebar %}
+                    {{ include('widgets/archives.html.twig') }}
+                {% endblock %}
+            </div>
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- main -->
+{{ include('widgets/footer.html.twig') }}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>

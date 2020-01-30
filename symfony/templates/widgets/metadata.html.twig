@@ -1,0 +1,15 @@
+<div class="metadata">
+    <div class="published">
+        {% if app.request.get('_route') == 'app_homepage' %}
+            {{ article.publishedAt|ago }}
+        {% else %}
+            {{ article.publishedAt|date('m/d/Y h:ia') }}
+        {% endif %}
+    </div>
+    <div class="categories">
+        Categories:
+        {% for category in article.categories %}
+            <a href="{{ category.slug }}">{{ category.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+    </div>
+</div>

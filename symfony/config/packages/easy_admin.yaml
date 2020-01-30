@@ -1,0 +1,55 @@
+easy_admin:
+    site_name: AndrewAdcock.com
+    design:
+        menu:
+            - {label: "Entities"}
+            - label: "Articles"
+              children:
+                - {entity: Article, label: "List Articles", icon: "th-list"}
+                - {entity: Article, label: "New Article", icon: "plus", params: {action: 'new'}}
+            - label: "Category"
+              children:
+                  - {entity: Category, label: "List Categories", icon: "th-list"}
+                  - {entity: Category, label: "New Category", icon: "plus", params: {action: 'new'}}
+            - {label: "Settings"}
+            - label: "Users"
+              children:
+                  - {entity: User, label: "List Users", icon: "th-list"}
+                  - {entity: User, label: "New User", icon: "plus", params: {action: 'new'}}
+    entities:
+        Article:
+            class: App\Entity\Article
+            label: Article
+            form:
+                fields:
+                    - {type: "group", icon: "pencil", label: "Basic Information"}
+                    - title
+                    - slug
+                    - content
+#                    - {property: 'content', type: 'text_editor'}
+                    - {type: "group", icon: "th-list", label: "Metadata"}
+                    - publishedAt
+                    - published
+                    - Author
+                    - ImageFilename
+                    - categories
+            list:
+                collapse_actions: false
+                sort: 'publishedAt'
+                actions: ['show', 'edit', 'delete']
+                batch_actions: ['delete']
+                title: 'All Articles'
+                fields:
+                    - title
+                    - publishedAt
+                    - Author
+                    - published
+                filters: ['published']
+        Category:
+            class: App\Entity\Category
+            list:
+                title: 'All Categories'
+        User:
+            class: App\Entity\User
+            list:
+                title: 'All Users'
