@@ -1,5 +1,7 @@
 sudo: required
-language: php7.4
+language: php
+php:
+  - '7.4'
 env:
   DOCKER_COMPOSE_VERSION: 1.25.0
 services:
