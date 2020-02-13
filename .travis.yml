@@ -12,8 +12,8 @@ before_install:
   -in travis_rsa.enc -out travis_rsa -d
 - chmod 600 travis_rsa
 - mv travis_rsa ~/.ssh/id_rsa
-- docker build -t aadcock/andrewadcockcom -f Dockerfile.dev .
-- docker run -d -p80:8080 aadcock/andrewadcockcom
+#- docker build -t aadcock/andrewadcockcom -f Dockerfile.dev .
+#- docker run -d -p80:8080 aadcock/andrewadcockcom
 deploy:
   provider: script
   script: bash ./deploy.sh
