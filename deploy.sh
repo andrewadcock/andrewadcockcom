@@ -27,7 +27,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
   ssh-add travis_rsa
 
   git push --force deploy HEAD:master
-  
+
 else
   echo "Not deploying, since this branch isn't master."
 fi
