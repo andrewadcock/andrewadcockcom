@@ -12,7 +12,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
   rm -rf .git
 
   echo $(pwd) #debug
-  git init --bare
+  git init
 
   git remote add deploy "travis@165.227.179.245:/var/repo/andrewadcock.git"
   git config user.name "Andrew Adcock"
