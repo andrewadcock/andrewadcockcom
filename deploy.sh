@@ -21,7 +21,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
   git status # debug
   git commit -m "Deploy"
 
-  openssl aes-256-cbc -K $encrypted_efba7c7df9d2_key -iv $encrypted_efba7c7df9d2_iv -in travis_rsa.enc -out travis_rsa -d
+  openssl aes-256-cbc -K $encrypted_e626a03f7ac6_key -iv $encrypted_e626a03f7ac6_iv -in travis_rsa.enc -out travis_rsa -d
   eval "$(ssh-agent -s)"
   chmod 600 travis_rsa
   ssh-add travis_rsa
