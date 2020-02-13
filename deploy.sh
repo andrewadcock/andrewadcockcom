@@ -3,6 +3,7 @@ set -xe
 
 if [ $TRAVIS_BRANCH == 'master' ] ; then
 
+  cd ../ # move up a dir after composer install
   echo "Deploying to production"
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/id_rsa
@@ -11,7 +12,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
   rm -rf .git
 
   echo $(pwd) #debug
-  git init
+  git init --bare
 
   git remote add deploy "travis@165.227.179.245:/var/repo/andrewadcock.git"
   git config user.name "Andrew Adcock"
@@ -21,7 +22,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
   git status # debug
   git commit -m "Deploy"
 
-  cd ../
+
   openssl aes-256-cbc -K $encrypted_e626a03f7ac6_key -iv $encrypted_e626a03f7ac6_iv -in travis_rsa.enc -out travis_rsa -d
   eval "$(ssh-agent -s)"
   chmod 600 travis_rsa
