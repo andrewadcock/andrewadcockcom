@@ -1,19 +1,29 @@
 sudo: required
-
+language: php
+php:
+  - '7.4'
 env:
   DOCKER_COMPOSE_VERSION: 1.25.0
-
 services:
-  - docker
-
+- docker
+addons:
+  ssh_known_host:
+  - 165.227.179.245
+  - andrewadcock.com
 before_install:
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - docker-compose -v
-  - docker -v
-  - mkdir symfony
+- openssl aes-256-cbc -K $encrypted_e626a03f7ac6_key -iv $encrypted_e626a03f7ac6_iv
+  -in travis_rsa.enc -out travis_rsa -d
+- chmod 600 travis_rsa
+- mv travis_rsa ~/.ssh/id_rsa
+- cd symfony
+- composer install
+#- docker build -t aadcock/andrewadcockcom -f Dockerfile.dev .
+#- docker run -d -p80:8080 aadcock/andrewadcockcom
 
 script:
-  - docker-compose -f docker-compose.yml up -d
-  - docker-compose -f docker-compose.yml ps
+  - php ./vendor/bin/simple-phpunit
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: master
