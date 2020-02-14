@@ -1,7 +1,7 @@
 sudo: required
 language: php
 php:
-  - '7.4'
+- '7.4'
 env:
   DOCKER_COMPOSE_VERSION: 1.25.0
 services:
@@ -17,11 +17,8 @@ before_install:
 - mv travis_rsa ~/.ssh/id_rsa
 - cd symfony
 - composer install
-#- docker build -t aadcock/andrewadcockcom -f Dockerfile.dev .
-#- docker run -d -p80:8080 aadcock/andrewadcockcom
-
 script:
-  - php ./vendor/bin/simple-phpunit
+- php ./vendor/bin/simple-phpunit
 deploy:
   provider: script
   script: bash ../deploy.sh
