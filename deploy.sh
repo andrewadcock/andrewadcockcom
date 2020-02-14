@@ -5,8 +5,8 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
 
   cd ../ # move up a dir after composer install
   echo "Deploying to production"
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_rsa
+#  eval "$(ssh-agent -s)"
+#  ssh-add ~/.ssh/id_rsa
 
   echo "Clear current git information"
   rm -rf .git
@@ -24,8 +24,8 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
 
 
   openssl aes-256-cbc -K $encrypted_e626a03f7ac6_key -iv $encrypted_e626a03f7ac6_iv -in travis_rsa.enc -out travis_rsa -d
-  eval "$(ssh-agent -s)"
   chmod 600 travis_rsa
+  eval "$(ssh-agent -s)"
   ssh-add travis_rsa
 
   git push --force deploy HEAD:master
