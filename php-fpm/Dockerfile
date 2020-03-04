@@ -1,38 +1,37 @@
-FROM alpine:3.10
+FROM php:7.4-fpm
 
-LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
+# Extensions
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libpq-dev \
+    libssl-dev \
+    libxml2-dev \
+    libmemcached-dev \
+    wget \
+    git
 
-RUN apk add --update --no-cache \
-    coreutils \
-    php7-fpm \
-    php7-apcu \
-    php7-ctype \
-    php7-curl \
-    php7-dom \
-    php7-gd \
-    php7-iconv \
-    php7-imagick \
-    php7-json \
-    php7-intl \
-    php7-mcrypt \
-    php7-fileinfo\
-    php7-mbstring \
-    php7-opcache \
-    php7-openssl \
-    php7-pdo \
-    php7-pdo_mysql \
-    php7-mysqli \
-    php7-xml \
-    php7-zlib \
-    php7-phar \
-    php7-tokenizer \
-    php7-session \
-    php7-simplexml \
-    php7-xdebug \
-    php7-zip \
-    php7-xmlwriter \
-    make \
-    curl
+RUN pecl install \
+        mongodb \
+        redis \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) \
+        gd \
+        iconv \
+        bcmath \
+        mysqli \
+        pcntl \
+        pdo_mysql \
+        pdo_pgsql  \
+        zip \
+        sockets \
+        soap \
+    && docker-php-ext-enable \
+        opcache \
+        mongodb \
+        redis
 
 RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig \
         && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
@@ -48,4 +47,4 @@ COPY symfony.pool.conf /etc/php7/php-fpm.d/
 CMD ["php-fpm7", "-F"]
 
 WORKDIR /var/www/symfony
-EXPOSE 9001
+EXPOSE 9000
