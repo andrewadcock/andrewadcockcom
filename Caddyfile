@@ -10,8 +10,8 @@
 #
 # For full information on how to configure TLS, see this documentation page:
 # https://caddyserver.com/docs/tls
-aa.local www.aa.local {
-    tls off
+https://aa.local {
+    tls self_signed
 
     root /var/www/symfony
     fastcgi / php:9000 php
