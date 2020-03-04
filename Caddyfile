@@ -46,14 +46,14 @@ aa.local www.aa.local {
         #X-Frame-Options "DENY"
     }
 
-    log /logs/aa.local.access.log {
+    log /var/log/caddy/aa.local.access.log {
         rotate_size 200
         rotate_age 14
         rotate_keep 100
         rotate_compress
     }
 
-    errors /logs/aa.local.error.log {
+    errors /var/log/caddy/aa.local.error.log {
         rotate_size 200
         rotate_age 14
         rotate_keep 100
