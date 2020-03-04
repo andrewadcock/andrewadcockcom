@@ -4,28 +4,28 @@ services:
         container_name: db
         image: mysql
         command: ["--default-authentication-plugin=mysql_native_password"]
-        ports:
-            - "3306:3306"
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: symfony
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony
         networks:
-            - db
+            andrewadcockcom:
+                aliases:
+                    - db
     php:
-        container_name: php-fpm
+        container_name: app
         build: ./php-fpm
-        ports:
-            - "9000:9001"
         volumes:
             - ./symfony:/var/www/symfony:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
         depends_on:
             - db
         networks:
-            - db
-            - php
+            andrewadcockcom:
+                aliases:
+                    - php
+                    - app
     caddy:
         container_name: caddy
         image: abiosoft/caddy
@@ -37,7 +37,7 @@ services:
         depends_on: 
             - php
         networks:
-            php:
+            andrewadcockcom:
               aliases:
                 - caddy
 
@@ -82,6 +82,4 @@ services:
 #        ports:
 #            - "81:5601"
 networks:
-    db:
-    php:
-    elk_stack:
+    andrewadcockcom:
