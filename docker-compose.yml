@@ -26,18 +26,24 @@ services:
         networks:
             - db
             - php
-    nginx:
-        container_name: nginx
-        build: ./nginx
+
+    caddy:
+        container_name: caddy
+        image: abiosoft/caddy
+        env_file:
+            - ./env/caddy.env
         ports:
             - "80:80"
+            - "443:443"
         depends_on: 
             - php
         networks:
             - php
         volumes:
-            - ./logs/nginx:/var/log/nginx:cached
-            - ./symfony:/var/www/symfony:cached
+            - "./Caddyfile:/etc/Caddyfile"
+            - "./logs/caddy:/var/log/caddy:cached"
+            - "./symfony:/var/www/symfony:cached"
+
     elasticsearch:
         container_name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
@@ -58,7 +64,7 @@ services:
             - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
             - ./elk/logstash/conf.d:/etc/logstash/conf.d:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
-            - ./logs/nginx:/var/log/nginx:cached
+            - ./logs/caddy:/var/log/caddy:cached
         networks:
             - elk_stack
     kibana:
