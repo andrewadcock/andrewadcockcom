@@ -64,3 +64,4 @@ symfony/public/build/
 .xcf
 
 /backups
+logs/symfony/dev.log
