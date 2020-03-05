@@ -13,7 +13,7 @@
 https://aa.local {
     tls self_signed
 
-    root /var/www/symfony
+    root /var/www/symfony/public
     fastcgi / php:9000 php
 	gzip
 

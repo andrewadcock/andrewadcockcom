@@ -13,6 +13,8 @@ services:
             andrewadcockcom:
                 aliases:
                     - db
+        volumes:
+            - "./backups:/var/backups"
     php:
         container_name: app
         build: ./php-fpm

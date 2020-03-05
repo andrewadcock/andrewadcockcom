@@ -13,10 +13,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     git
 
-RUN pecl install \
-        mongodb \
-        redis \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+RUN docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) \
         gd \
         iconv \
@@ -24,14 +21,8 @@ RUN pecl install \
         mysqli \
         pcntl \
         pdo_mysql \
-        pdo_pgsql  \
-        zip \
-        sockets \
-        soap \
     && docker-php-ext-enable \
-        opcache \
-        mongodb \
-        redis
+        opcache
 
 RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig \
         && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
@@ -44,7 +35,7 @@ COPY xdebug.ini  /etc/php7/conf.d/
 
 COPY symfony.pool.conf /etc/php7/php-fpm.d/
 
-CMD ["php-fpm7", "-F"]
+#CMD ["php-fpm7", "-F"]
 
 WORKDIR /var/www/symfony
 EXPOSE 9000
