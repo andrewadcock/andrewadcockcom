@@ -10,10 +10,10 @@
 #
 # For full information on how to configure TLS, see this documentation page:
 # https://caddyserver.com/docs/tls
-aa.local www.aa.local {
-    tls off
+https://aa.local {
+    tls self_signed
 
-    root /var/www/symfony
+    root /var/www/symfony/public
     fastcgi / php:9000 php
 	gzip
 
@@ -46,14 +46,14 @@ aa.local www.aa.local {
         #X-Frame-Options "DENY"
     }
 
-    log /logs/aa.local.access.log {
+    log /var/log/caddy/aa.local.access.log {
         rotate_size 200
         rotate_age 14
         rotate_keep 100
         rotate_compress
     }
 
-    errors /logs/aa.local.error.log {
+    errors /var/log/caddy/aa.local.error.log {
         rotate_size 200
         rotate_age 14
         rotate_keep 100
