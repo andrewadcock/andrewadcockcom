@@ -62,6 +62,11 @@ class Article
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $teaser;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -190,5 +195,17 @@ class Article
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    public function getTeaser(): ?string
+    {
+        return $this->teaser;
+    }
+
+    public function setTeaser(?string $teaser): self
+    {
+        $this->teaser = $teaser;
+
+        return $this;
     }
 }

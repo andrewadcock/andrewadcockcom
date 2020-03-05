@@ -1,6 +1,7 @@
 FROM php:7.4-fpm
 
 # Extensions
+
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -10,17 +11,23 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libxml2-dev \
     libmemcached-dev \
+    zlib1g-dev \
+    libzip-dev \
     wget \
+    zip \
     git
 
 RUN docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) \
+        bcmath \
         gd \
         iconv \
         bcmath \
         mysqli \
         pcntl \
         pdo_mysql \
+        opcache \
+        zip \
     && docker-php-ext-enable \
         opcache
 

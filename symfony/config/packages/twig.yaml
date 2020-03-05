@@ -3,4 +3,4 @@ twig:
     paths:
         '%kernel.project_dir%/templates/widgets': widgets
     form_themes:
-        - 'bootstrap_4_layout.html.twig'
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
