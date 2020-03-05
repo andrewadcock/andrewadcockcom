@@ -51,5 +51,14 @@ easy_admin:
                 title: 'All Categories'
         User:
             class: App\Entity\User
+            controller: App\Controller\AppEasyAdminController
+            form:
+                fields:
+                    - email
+                    - firstName
+                    - lastName
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }
+                    - { property: 'password', type: 'text', type_options: { required: false }, empty_data: 'default-template.html' }
             list:
                 title: 'All Users'
+            password_encoding: { algorithm: 'argon2', cost: 12 }

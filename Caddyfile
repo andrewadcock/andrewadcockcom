@@ -1,0 +1,62 @@
+# HTTPS with HTTP-to-HTTPS redirect
+# This configuration uses Let's Encrypt to generate a certificate for the
+# virtual host, and automatically handles redirecting HTTP to HTTPS. In order
+# to use this, update the domain and the LETSENCRYPT_EMAIL to the email address
+# you wish to associate with this certificate on the Let's Encrypt servers.
+#
+# If you would like to use a self-signed certificate (e.g. for dev/testing
+# purposes or for pre-launch access) you can change LETSENCRYPT_EMAIL to
+# self_signed: "tls self_signed"
+#
+# For full information on how to configure TLS, see this documentation page:
+# https://caddyserver.com/docs/tls
+https://aa.local {
+    tls self_signed
+
+    root /var/www/symfony/public
+    fastcgi / php:9000 php
+	gzip
+
+	# Prevent malicious PHP uploads from running
+	rewrite {
+		r /uploads\/(.*)\.php
+		to /
+	}
+	# Pretty URLs
+	rewrite {
+        if {path} not_match ^\/wp-admin
+		to {path} {path}/ /index.php?{query}
+    }
+
+    # Enable any of the headers below by uncommenting the ones you'd like to use
+    header / {
+        # HTTP Strict Transport Security (HSTS) forces clients to always
+        # connect to the site via HTTPS
+        #Strict-Transport-Security "max-age=31536000; preload"
+
+        # Cross-site filter (XSS) and tell the browser to block detected attacks
+        #X-XSS-Protection "1; mode=block"
+
+        # Prevent some browsers from MIME-sniffing a response away from the
+        # declared Content-Type
+        #X-Content-Type-Options "nosniff"
+
+        # Disallow the site to be rendered within a frame (clickjacking
+        # protection)
+        #X-Frame-Options "DENY"
+    }
+
+    log /var/log/caddy/aa.local.access.log {
+        rotate_size 200
+        rotate_age 14
+        rotate_keep 100
+        rotate_compress
+    }
+
+    errors /var/log/caddy/aa.local.error.log {
+        rotate_size 200
+        rotate_age 14
+        rotate_keep 100
+        rotate_compress
+    }
+}
