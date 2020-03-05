@@ -1,3 +1,4 @@
+{% if categories is defined %}
 <div class="archives">
   {% if categories|length > 0 %}
     <h4>Categories</h4>
@@ -8,8 +9,9 @@
     </ul>
   {% endif %}
 <hr>
+{% endif %}
 
-
+{% if archives is defined %}
   {% if archives|length > 0 %}
   <h4>Recent</h4>
     <ul>
@@ -19,3 +21,4 @@
     </ul>
   {% endif %}
 </div>
+{% endif %}
