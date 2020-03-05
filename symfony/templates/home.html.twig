@@ -29,7 +29,11 @@
                         <h2><a href="{{ path('article_show', { slug: article.slug }) }}">{{ article.title }}</a></h2>
                         {% include '@widgets/metadata.html.twig' %}
                         <div class="snippet">
+                            {% if article.teaser is not null %}
+                                {{ article.teaser }}
+                            {% else %}
                             {{ article.content|truncate(200)|markdown }}
+                            {% endif %}
                         </div>
                     </div>
                 </li>
