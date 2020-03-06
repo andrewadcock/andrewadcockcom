@@ -30,9 +30,6 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
 
   git push --force deploy HEAD:master
 
-  cd /var/www/symfony/
-  cp Caddyfile.prod Caddyfile
-
 else
   echo "Not deploying, since this branch isn't master."
 fi
