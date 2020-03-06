@@ -17,10 +17,13 @@ before_install:
 - mv travis_rsa ~/.ssh/id_rsa
 - cd symfony
 - composer install
-- cd ../
-- cp Caddyfile.prod Caddyfile
 script:
 - php ./vendor/bin/simple-phpunit
+after_success:
+  - cd ../
+  - cp Caddyfile.prod Caddyfile
+  - docker-compose down
+  - docker-compose up --build -d
 deploy:
   provider: script
   script: bash ../deploy.sh
