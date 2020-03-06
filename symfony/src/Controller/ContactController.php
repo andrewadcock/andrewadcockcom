@@ -67,4 +67,20 @@ class ContactController extends AbstractController
             'contact' => $contact,
         ]);
     }
+
+    /**
+     * @Route("/admin/contact/delete/{id}", name="admin_contact_single_delete")
+     */
+    public function deleteSingle(ContactRepository $contactRepository, int $id, EntityManagerInterface $em)
+    {
+
+        // Get object in DB and remove
+        $contactSubmission = $em->getRepository(Contact::class)->find($id);
+        $em->remove($contactSubmission);
+        $em->flush();
+
+        // Return user to list page
+        return $this->redirectToRoute('admin_contact_list');
+
+    }
 }
