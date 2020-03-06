@@ -18,6 +18,8 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
   git config user.name "Andrew Adcock"
   git config user.email "andrewadcock+travis@gmail.com"
 
+  cp Caddyfile.prod Caddyfile
+
   git add .
   git status # debug
   git commit -m "Deploy"
