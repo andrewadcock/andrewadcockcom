@@ -5,13 +5,13 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
 
   cd ../ # move up a dir after composer install
   echo "Deploying to production"
-#  eval "$(ssh-agent -s)"
-#  ssh-add ~/.ssh/id_rsa
 
   echo "Clear current git information"
   rm -rf .git
 
+  echo "-----------------------------"
   echo $(pwd) #debug
+  echo "-----------------------------"
   git init
 
   git remote add deploy "travis@165.227.179.245:/var/repo/andrewadcock.git"
