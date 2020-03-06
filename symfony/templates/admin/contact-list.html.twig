@@ -11,17 +11,25 @@
             <th>Email</th>
             <th>Subject</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
+        {% if contacts is defined %}
         {% for contact in contacts %}
             <tr>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.subject }}</td>
                 <td><a href="{{ path('admin_contact_single', {id: contact.id}) }}">View</a></td>
+                <td><a href="{{ path('admin_contact_single_delete', {id: contact.id}) }}">Delete</a></td>
             </tr>
         {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5">There are no contact form submissions at this time.</td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 

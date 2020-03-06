@@ -11,6 +11,9 @@ easy_admin:
               children:
                   - {entity: Category, label: "List Categories", icon: "th-list"}
                   - {entity: Category, label: "New Category", icon: "plus", params: {action: 'new'}}
+            - label: "Contact Form"
+              children:
+                  - {label: "Submissions", url: "/admin/contact/", rel: 'index'}
             - {label: "Settings"}
             - label: "Users"
               children:
@@ -26,7 +29,8 @@ easy_admin:
                     - title
                     - slug
                     - { property: 'teaser', type: 'fos_ckeditor' }
-                    - { property: 'content', type: 'text_editor' }
+                    - content
+#                    - { property: 'content', type: 'text_editor' }
                     - {type: "group", icon: "th-list", label: "Metadata"}
                     - publishedAt
                     - published
@@ -62,3 +66,4 @@ easy_admin:
             list:
                 title: 'All Users'
             password_encoding: { algorithm: 'argon2', cost: 12 }
+
