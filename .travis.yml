@@ -19,13 +19,13 @@ before_install:
 - composer install
 script:
 - php ./vendor/bin/simple-phpunit
-after_success:
-  - cd ../
-  - cp Caddyfile.prod Caddyfile
-  - docker-compose down
-  - docker-compose up --build -d
 deploy:
   provider: script
   script: bash ../deploy.sh
   on:
     branch: master
+after_success:
+  - cd ../
+  - cp Caddyfile.prod Caddyfile
+  - docker-compose down
+  - docker-compose up --build -d
