@@ -26,6 +26,5 @@ deploy:
     branch: master
 after_success:
   - cd ../
-  - cp Caddyfile.prod Caddyfile
   - docker-compose down
   - docker-compose up --build -d
