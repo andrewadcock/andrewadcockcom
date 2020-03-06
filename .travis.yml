@@ -17,6 +17,7 @@ before_install:
 - mv travis_rsa ~/.ssh/id_rsa
 - cd symfony
 - composer install
+- cp Caddyfile.prod Caddyfile
 script:
 - php ./vendor/bin/simple-phpunit
 deploy:
