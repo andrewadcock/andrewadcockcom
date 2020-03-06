@@ -30,7 +30,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
 
   git push --force deploy HEAD:master
 
-  cd /var/www/andrewadcock/
+  cd /var/www/symfony/
   cp Caddyfile.prod Caddyfile
 
 else
